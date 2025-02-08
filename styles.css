@@ -1,0 +1,84 @@
+/* 🌟 Color Variables for Consistency */
+:root {
+    /* 🎨 Core Colors */
+    --primary-color: #0078D4; /* Main Accent Color (Used for buttons, highlights) */
+    --secondary-color: #005A9E; /* Darker shade for hover effects */
+    --background-light: #F0F0F0; /* Light mode background */
+    --background-dark: #1A1A1A; /* Dark mode background */
+    --text-light: #FFFFFF; /* White text for dark mode */
+    --text-dark: #333333; /* Dark text for light mode */
+    --border-color: #DDDDDD; /* Border for chat bubbles, input box */
+
+    /* 🗨️ Chat Interface */
+    --user-message-bg: #DCF8C6; /* Light green (WhatsApp-like) */
+    --bot-message-bg: #E5E5EA; /* Light gray (iMessage-like) */
+    --input-box-bg: #FFFFFF; /* Input box background */
+    --send-button-bg: var(--primary-color); /* Send button */
+    --send-button-hover: var(--secondary-color); /* Hover effect */
+
+    /* 🌙 Dark/Light Mode */
+    --dark-mode-toggle-bg: #444; /* Toggle switch background */
+    --dark-mode-toggle-knob: #FFF; /* Toggle knob */
+    
+    /* 🔄 Typing Animation */
+    --typing-bubble: #CCCCCC; /* Light gray for typing dots */
+
+    /* 📋 Copy-to-Clipboard */
+    --copy-icon-color: #888; /* Neutral gray */
+    --copy-icon-hover: #555; /* Darker gray */
+
+    /* 🎭 Landing Page */
+    --landing-bg: linear-gradient(to right, #0078D4, #005A9E); /* Gradient background */
+    --landing-text-color: white; /* Text color for contrast */
+    --get-started-button: #FFA500; /* Orange for CTA */
+}
+
+/* 📌 Chat Interface */
+.chat-container {
+    background-color: var(--background-light);
+    color: var(--text-dark);
+}
+
+/* 🗨️ Chat Bubbles */
+.user-message {
+    background-color: var(--user-message-bg);
+}
+.bot-message {
+    background-color: var(--bot-message-bg);
+}
+
+/* 🔘 Send Button */
+.send-button {
+    background-color: var(--send-button-bg);
+}
+.send-button:hover {
+    background-color: var(--send-button-hover);
+}
+
+/* 🌙 Dark Mode */
+.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+/* ✍️ Typing Animation */
+.typing-animation {
+    background-color: var(--typing-bubble);
+}
+
+/* 📋 Copy Icon */
+.copy-icon {
+    color: var(--copy-icon-color);
+}
+.copy-icon:hover {
+    color: var(--copy-icon-hover);
+}
+
+/* 🎭 Landing Page */
+.landing-page {
+    background: var(--landing-bg);
+    color: var(--landing-text-color);
+}
+.get-started-btn {
+    background-color: var(--get-started-button);
+}
