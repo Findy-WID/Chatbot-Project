@@ -155,3 +155,17 @@ body {
 .get-started-btn {
     background-color: var(--get-started-button);
 }
+
+.copy-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 8px;
+    color: #888;
+}
+
+.copy-btn:hover {
+    color: #007bff;
+}
+
