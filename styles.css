@@ -57,6 +57,10 @@ body {
     background-color: var(--bot-message-bg);
     border: 1px solid #d4d4d6;
 }
+.chat:hover .chat-content:not(:has(.typing-animation) span) {
+    visibility: visible;
+}
+
 .chat .chat-content{
     width: 100%;
     max-width: 1200px;
@@ -80,6 +84,31 @@ body {
     padding: 0 50px 0 25px;
     font-size: 1.05rem;
 }
+.typing-animation {
+    display: inline-flex;
+    padding-left: 25px;
+}
+.typing-animation .typing-dot {
+    height: 7px;
+    width: 7px;
+    opacity: 0.7;
+    margin: 0 3px;
+    border-radius: 50%;
+    background: var(--text-dark);
+    animation: animateDots 1.5s var(--delay) ease-in-out infinite;
+}
+@keyframes animateDots {
+    0%, 44% {
+        transform: translateY(0px);
+    }
+    22% {
+        opacity: 0.4;
+        transform: translateY(-6px);
+    }
+    44% {
+        opacity: 0.2;
+    }
+}
 
 /* 🔘 Send Button */
 .typing-container {
@@ -100,7 +129,7 @@ body {
 .typing-content .typing-textarea {
     width: 100%;
     display: flex;
-    position: relative;
+    position: relative; 
 }
 .typing-textarea textarea {
     width: 100%;
@@ -154,4 +183,31 @@ body {
 }
 .get-started-btn {
     background-color: var(--get-started-button);
+}
+
+
+/* Emoji styling */
+.typing-container img {
+    margin-left: -100px;
+    margin-top: 6px;
+    cursor: pointer;
+}
+.emoji {
+    display: flex;
+    margin-left: 3.5px;
+    margin-top: 10px;
+    height: 0px;
+    width: 1000px;
+    border-radius: 5px;
+    background: #fff;
+    overflow-y: scroll; 
+    cursor: pointer;
+    transition: 0.5s height;
+}
+.emoji::-webkit-scrollbar{
+    width: 0;
+}
+.emoji span {
+    margin-left: 9.8px;
+    font-size: 20px;
 }
