@@ -1,7 +1,6 @@
 /* 🌟 Color Variables for Consistency */
 :root {
-    /* 🎨 Core Colors */
-    --primary-color: #0078D4; /* Main Accent Color (Used for buttons, highlights) */
+    --primary-color: #0078D4; /* Main Accent Color */
     --secondary-color: #005A9E; /* Darker shade for hover effects */
     --background-light: #F0F0F0; /* Light mode background */
     --background-dark: #1A1A1A; /* Dark mode background */
@@ -9,27 +8,19 @@
     --text-dark: #333333; /* Dark text for light mode */
     --border-color: #DDDDDD; /* Border for chat bubbles, input box */
 
-    /* 🗨️ Chat Interface */
     --user-message-bg: #DCF8C6; /* Light green (WhatsApp-like) */
     --bot-message-bg: #E5E5EA; /* Light gray (iMessage-like) */
     --input-box-bg: #FFFFFF; /* Input box background */
-    --send-button-bg: var(--primary-color); /* Send button */
-    --send-button-hover: var(--secondary-color); /* Hover effect */
+    --send-button-bg: var(--primary-color);
+    --send-button-hover: var(--secondary-color);
 
-    /* 🌙 Dark/Light Mode */
-    --dark-mode-toggle-bg: #444; /* Toggle switch background */
-    --dark-mode-toggle-knob: #FFF; /* Toggle knob */
-    
-    /* 🔄 Typing Animation */
     --typing-bubble: #CCCCCC; /* Light gray for typing dots */
 
-    /* 📋 Copy-to-Clipboard */
     --copy-icon-color: #888; /* Neutral gray */
     --copy-icon-hover: #555; /* Darker gray */
 
-    /* 🎭 Landing Page */
-    --landing-bg: linear-gradient(to right, #0078D4, #005A9E); /* Gradient background */
-    --landing-text-color: white; /* Text color for contrast */
+    --landing-bg: linear-gradient(to right, #0078D4, #005A9E);
+    --landing-text-color: white;
     --get-started-button: #FFA500; /* Orange for CTA */
 }
 
@@ -44,33 +35,41 @@ body {
 }
 
 /* 📌 Chat Interface */
-.chat-container .chat {
-    padding: 25px 10px;
+.chat-container {
+    padding: 10px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background-color: var(--background-light);
     color: var(--text-dark);
+    overflow-y: auto;
+    height: 80vh;
 }
 
-.chat-container .chat.outgoing {
+.chat {
+    max-width: 90%;
+    width: 600px;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    word-wrap: break-word;
+}
+
+.chat.outgoing {
     background-color: var(--user-message-bg);
     border: 1px solid #dcfcc4;
+    align-self: flex-end;
 }
 
-.chat-container .chat.incoming {
+.chat.incoming {
     background-color: var(--bot-message-bg);
     border: 1px solid #d4d4d6;
-}
-
-.chat:hover .chat-content:not(:has(.typing-animation) span) {
-    visibility: visible;
+    align-self: flex-start;
 }
 
 .chat .chat-content {
-    width: 100%;
-    max-width: 1200px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .chat .chat-details {
@@ -81,19 +80,91 @@ body {
 .chat .chat-details img {
     width: 35px;
     height: 35px;
-    object-fit: cover;
-    border-radius: 2px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .chat .chat-details p {
     white-space: pre-wrap;
-    padding: 0 50px 0 25px;
-    font-size: 1.05rem;
+    font-size: 1rem;
+    margin: 0;
 }
 
+/* 📋 Copy Button */
+.copy-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 8px;
+    color: var(--copy-icon-color);
+    transition: color 0.2s;
+}
+
+.copy-btn:hover {
+    color: var(--copy-icon-hover);
+}
+
+/* 🔘 Typing Animation */
+.typing-container {
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--send-button-bg);
+}
+
+.typing-container .typing-content {
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.typing-textarea {
+    flex-grow: 1;
+    display: flex;
+    position: relative;
+}
+
+.typing-textarea textarea {
+    width: 100%;
+    height: 50px;
+    border: none;
+    resize: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 10px 15px;
+    background-color: var(--bot-message-bg);
+    outline: none;
+}
+
+.typing-content span {
+    height: 45px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.send-button:hover {
+    background-color: var(--send-button-hover);
+}
+
+/* 🌙 Dark Mode */
+.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+/* ✍️ Typing Animation */
 .typing-animation {
-    display: inline-flex;
-    padding-left: 25px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
 }
 
 .typing-animation .typing-dot {
@@ -119,116 +190,37 @@ body {
     }
 }
 
-/* 🔘 Send Button */
-.typing-container {
-    padding: 20px 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+/* 😊 Emoji Styling */
+.typing-container img {
+    cursor: pointer;
+}
+
+.emoji {
     display: flex;
-    justify-content: center;
-    background-color: var(--send-button-bg);
-}
-
-.typing-container .typing-content {
-    max-width: 950px;
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-}
-
-.typing-content .typing-textarea {
-    width: 100%;
-    display: flex;
-    position: relative; 
-}
-
-.typing-textarea textarea {
-    width: 100%;
-    height: 55px;
-    border: none;
-    resize: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    padding: 15px 45px 15px 20px;
-    background-color: var(--bot-message-bg);
-}
-
-.typing-textarea span {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
-
-.typing-content span {
-    height: 50px;
-    width: 55px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.send-button:hover {
-    background-color: var(--send-button-hover);
-}
-
-/* 🌙 Dark Mode */
-.dark-mode {
-    background-color: var(--background-dark);
-    color: var(--text-light);
-}
-
-/* ✍️ Typing Animation */
-.typing-animation {
-    background-color: var(--typing-bubble);
-}
-
-/* 📋 Copy Icon */
-.copy-icon {
-    color: var(--copy-icon-color);
-}
-
-.copy-icon:hover {
-    color: var(--copy-icon-hover);
+    margin-top: 10px;
+    border-radius: 5px;
+    background: #fff;
+    padding: 5px;
 }
 
 /* 🎭 Landing Page */
 .landing-page {
     background: var(--landing-bg);
     color: var(--landing-text-color);
+    text-align: center;
+    padding: 40px;
 }
 
 .get-started-btn {
     background-color: var(--get-started-button);
-}
-
-/* 📋 Copy Button */
-.copy-btn {
-    background: none;
+    padding: 10px 20px;
     border: none;
     cursor: pointer;
-    font-size: 16px;
-    margin-left: 8px;
-    color: #888;
-}
-
-.copy-btn:hover {
-    color: #007bff;
-}
-
-/* 😊 Emoji Styling */
-.typing-container img {
-    margin-left: -100px;
-    margin-top: 6px;
-    cursor: pointer;
-}
-
-.emoji {
-    display: flex;
-    margin-left: 3.5px;
-    margin-top: 10px;
-    height: auto;
-    width: 100%;
+    color: white;
+    font-size: 1rem;
     border-radius: 5px;
-    background: #fff;
+}
+
+.get-started-btn:hover {
+    background-color: darkorange;
 }
