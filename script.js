@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", loadChatHistory);
 const chatContainer = document.getElementById("chat-container");
 const inputField = document.getElementById("chat-input");
 const sendBtn = document.getElementById("send-btn");
+const API_KEY = ""; // Replace with your OpenAI API key
 
 sendBtn.addEventListener("click", sendMessage);
 inputField.addEventListener("keypress", function(event) {
@@ -22,11 +23,12 @@ function sendMessage() {
 
     inputField.value = ""; // Clear input
 
-    // Simulate Bot Response (Modify with actual AI logic if needed)
+    // Show Typing Animation
+    showTypingAnimation();
+
+    // Fetch AI Response
     setTimeout(() => {
-        let botResponse = "This is a bot response!";
-        displayMessage("bot", botResponse);
-        saveMessage("bot", botResponse);
+        getChatResponse(message);
     }, 1000);
 }
 
@@ -72,4 +74,58 @@ function copyText(text) {
     }).catch(err => {
         console.error("Error copying text: ", err);
     });
+}
+
+// OpenAI API Call
+function getChatResponse(userText) {
+    const API_URL = "https://api.openai.com/v1/completions";
+    
+    fetch(API_URL, {
+        method: "POST",
+        headers: {        
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`
+        },
+        body: JSON.stringify({
+            model: "text-davinci-003",
+            prompt: userText,
+            max_tokens: 2048,
+            temperature: 0.2,
+            n: 1,
+            stop: null
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        let botResponse = data.choices[0].text.trim();
+        displayMessage("bot", botResponse);
+        saveMessage("bot", botResponse);
+    })
+    .catch(error => console.error("Error:", error));
+}
+
+// Typing Animation
+function showTypingAnimation() {
+    let typingDiv = document.createElement("div");
+    typingDiv.classList.add("chat", "incoming");
+
+    typingDiv.innerHTML = `
+        <div class="chat-content">
+            <div class="chat-details">
+                <img src="./ninjabotgirl.jpg" alt="ninjabot">
+                <div class="typing-animation">
+                    <div class="typing-dot" style="--delay: 0.2s"></div>
+                    <div class="typing-dot" style="--delay: 0.3s"></div>
+                    <div class="typing-dot" style="--delay: 0.4s"></div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    chatContainer.appendChild(typingDiv);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+
+    setTimeout(() => {
+        typingDiv.remove();
+    }, 1000);
 }

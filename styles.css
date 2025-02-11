@@ -32,11 +32,13 @@
     --landing-text-color: white; /* Text color for contrast */
     --get-started-button: #FFA500; /* Orange for CTA */
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: 'Inter', sans-serif;
 }
@@ -49,36 +51,72 @@ body {
     background-color: var(--background-light);
     color: var(--text-dark);
 }
-.chat-container .chat.outgoing  {
+
+.chat-container .chat.outgoing {
     background-color: var(--user-message-bg);
     border: 1px solid #dcfcc4;
 }
+
 .chat-container .chat.incoming {
     background-color: var(--bot-message-bg);
     border: 1px solid #d4d4d6;
 }
-.chat .chat-content{
+
+.chat:hover .chat-content:not(:has(.typing-animation) span) {
+    visibility: visible;
+}
+
+.chat .chat-content {
     width: 100%;
     max-width: 1200px;
     display: flex;
     align-items: flex-start;
 }
-.chat .chat-details{
+
+.chat .chat-details {
     display: flex;
     align-items: center;
 }
+
 .chat .chat-details img {
-    
-    
     width: 35px;
     height: 35px;
     object-fit: cover;
     border-radius: 2px;
 }
+
 .chat .chat-details p {
     white-space: pre-wrap;
     padding: 0 50px 0 25px;
     font-size: 1.05rem;
+}
+
+.typing-animation {
+    display: inline-flex;
+    padding-left: 25px;
+}
+
+.typing-animation .typing-dot {
+    height: 7px;
+    width: 7px;
+    opacity: 0.7;
+    margin: 0 3px;
+    border-radius: 50%;
+    background: var(--text-dark);
+    animation: animateDots 1.5s var(--delay) ease-in-out infinite;
+}
+
+@keyframes animateDots {
+    0%, 44% {
+        transform: translateY(0px);
+    }
+    22% {
+        opacity: 0.4;
+        transform: translateY(-6px);
+    }
+    44% {
+        opacity: 0.2;
+    }
 }
 
 /* 🔘 Send Button */
@@ -91,17 +129,20 @@ body {
     justify-content: center;
     background-color: var(--send-button-bg);
 }
-.typing-container .typing-content{
+
+.typing-container .typing-content {
     max-width: 950px;
     width: 100%;
     display: flex;
     align-items: flex-end;
 }
+
 .typing-content .typing-textarea {
     width: 100%;
     display: flex;
-    position: relative;
+    position: relative; 
 }
+
 .typing-textarea textarea {
     width: 100%;
     height: 55px;
@@ -112,11 +153,13 @@ body {
     padding: 15px 45px 15px 20px;
     background-color: var(--bot-message-bg);
 }
+
 .typing-textarea span {
     position: absolute;
     right: 0;
     bottom: 0;
 }
+
 .typing-content span {
     height: 50px;
     width: 55px;
@@ -124,6 +167,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .send-button:hover {
     background-color: var(--send-button-hover);
 }
@@ -143,6 +187,7 @@ body {
 .copy-icon {
     color: var(--copy-icon-color);
 }
+
 .copy-icon:hover {
     color: var(--copy-icon-hover);
 }
@@ -152,10 +197,12 @@ body {
     background: var(--landing-bg);
     color: var(--landing-text-color);
 }
+
 .get-started-btn {
     background-color: var(--get-started-button);
 }
 
+/* 📋 Copy Button */
 .copy-btn {
     background: none;
     border: none;
@@ -169,3 +216,19 @@ body {
     color: #007bff;
 }
 
+/* 😊 Emoji Styling */
+.typing-container img {
+    margin-left: -100px;
+    margin-top: 6px;
+    cursor: pointer;
+}
+
+.emoji {
+    display: flex;
+    margin-left: 3.5px;
+    margin-top: 10px;
+    height: auto;
+    width: 100%;
+    border-radius: 5px;
+    background: #fff;
+}
