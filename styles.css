@@ -40,15 +40,37 @@
 body {
     font-family: 'Inter', sans-serif;
 }
+body.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-dark);}
 
-/* 📌 Chat Interface */
-.chat-container .chat {
-    padding: 25px 10px;
-    display: flex;
-    justify-content: center;
-    background-color: var(--background-light);
-    color: var(--text-dark);
-}
+body.dark-mode .chat-content{
+    /* background-color: var(--background-dark); */
+    color: var(--text-light);}
+    
+    body.dark-mode .chat.chat.incoming{
+        background-color: var(--background-dark);
+        border: 1xp solid var(--copy-icon-color);
+        color: var(--text-dark);}
+
+        body.dark-mode .chat.outgoing{
+            background-color: var(--dark-mode-toggle-bg);
+            border: 1xp solid var(--copy-icon-color);
+            color: var(--text-light);}
+
+            body.dark-mode .typing-container{
+                background-color: var(--dark-mode-toggle-bg);
+                color: var(--text-dark);}
+    
+    /* 📌 Chat Interface */
+    .chat-container .chat {
+        padding: 25px 10px;
+        display: flex;
+        justify-content: center;
+        background-color: var(--background-light);
+        color: var(--text-dark);
+    }
+   
 .chat-container .chat.outgoing  {
     background-color: var(--user-message-bg);
     border: 1px solid #dcfcc4;
@@ -71,9 +93,7 @@ body {
     display: flex;
     align-items: center;
 }
-.chat .chat-details img {
-    
-    
+.chat .chat-details img {  
     width: 35px;
     height: 35px;
     object-fit: cover;
@@ -156,6 +176,23 @@ body {
 .send-button:hover {
     background-color: var(--send-button-hover);
 }
+#start-btn{
+    margin: 6px 0 0 7px;
+    padding: 0.9rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    background: white;
+  
+}
+button {
+    margin: 6px 0 0 7px;
+    padding: 0.7rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    background: white;
+  
+ 
+  }
 
 /* 🌙 Dark Mode */
 .dark-mode {
