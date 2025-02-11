@@ -211,3 +211,66 @@ body {
     margin-left: 9.8px;
     font-size: 20px;
 }
+
+/* Landing page styling */
+header {
+    height: 100vh;
+    width: 100%;
+    border-radius: 10px;
+    border: 30px;
+    background: #dfc5fe;
+}
+header .text_content {
+    position: absolute;
+    left: 7%;
+    top: 33%;
+    z-index: 12;
+}
+header .text_content .text1 {
+    font-size: 35px; 
+    margin-bottom: 20px;
+    margin-right: 0;
+    margin-left: 0; 
+    color: #111810;
+}
+ 
+header .text_content .name1 {
+    color: #292827;
+    font-size:25px;
+    margin: -20px 0 0 -3px;
+}
+header .text_content .job {
+    color: #2c3350;
+    font-size: 15px;
+    line-height: 150%;
+    margin: 5px 0;
+    margin-top: 10px;
+}
+.button {
+    margin: 20px 0 0 50 px;
+}
+
+.text_content .button button {
+    outline: none;
+    margin: 0 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    color: #fff;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #9169c1;
+}
+
+.text_content .button button:hover {
+    transform: scale(0.98);
+}
+
+.img1 {
+    position: absolute;
+     width: 700px; 
+    height: 150%;
+    left: 120%;
+    bottom: 0;
+} 

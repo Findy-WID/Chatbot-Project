@@ -47,3 +47,11 @@ setTimeout(showTyingAnimation, 500);
 
 //Remove the typing animation, append the paragraph element and save the chats to local storage
 incomingChatDiv.querySelector(".typing-animation").remove();
+
+//Landing Page
+const btnGetStarted = document.querySelector(".button");
+const userInterface = document.querySelector(".chat-container");
+
+btnGetStarted.addEventListener("click", () => {
+    userInterface.classList.toggle("show-chat-container");
+});
