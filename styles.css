@@ -43,6 +43,24 @@ body {
 body.dark-mode {
     background-color: var(--background-dark);
     color: var(--text-dark);}
+
+body.dark-mode .chat-content{
+    /* background-color: var(--background-dark); */
+    color: var(--text-light);}
+    
+    body.dark-mode .chat.chat.incoming{
+        background-color: var(--background-dark);
+        border: 1xp solid var(--copy-icon-color);
+        color: var(--text-dark);}
+
+        body.dark-mode .chat.outgoing{
+            background-color: var(--dark-mode-toggle-bg);
+            border: 1xp solid var(--copy-icon-color);
+            color: var(--text-light);}
+
+            body.dark-mode .typing-container{
+                background-color: var(--dark-mode-toggle-bg);
+                color: var(--text-dark);}
     
     /* 📌 Chat Interface */
     .chat-container .chat {
