@@ -3,10 +3,12 @@ document.addEventListener("DOMContentLoaded", loadChatHistory);
 const chatContainer = document.getElementById("chat-container");
 const inputField = document.getElementById("chat-input");
 const sendBtn = document.getElementById("send-btn");
-const API_KEY = ""; // Replace with your OpenAI API key
 
+// Send message on button click
 sendBtn.addEventListener("click", sendMessage);
-inputField.addEventListener("keypress", function(event) {
+
+// Send message on Enter key press
+inputField.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
         sendMessage();
@@ -26,9 +28,10 @@ function sendMessage() {
     // Show Typing Animation
     showTypingAnimation();
 
-    // Fetch AI Response
     setTimeout(() => {
-        getChatResponse(message);
+        let botResponse = getPredefinedResponse(message);
+        displayMessage("bot", botResponse);
+        saveMessage("bot", botResponse);
     }, 1000);
 }
 
@@ -76,32 +79,20 @@ function copyText(text) {
     });
 }
 
-// OpenAI API Call
-function getChatResponse(userText) {
-    const API_URL = "https://api.openai.com/v1/completions";
-    
-    fetch(API_URL, {
-        method: "POST",
-        headers: {        
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${API_KEY}`
-        },
-        body: JSON.stringify({
-            model: "text-davinci-003",
-            prompt: userText,
-            max_tokens: 2048,
-            temperature: 0.2,
-            n: 1,
-            stop: null
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        let botResponse = data.choices[0].text.trim();
-        displayMessage("bot", botResponse);
-        saveMessage("bot", botResponse);
-    })
-    .catch(error => console.error("Error:", error));
+// Function for Predefined Responses
+function getPredefinedResponse(userText) {
+    const responses = {
+        "hello": "Hi there! How can I help you?",
+        "how are you": "I'm just a chatbot, but I'm doing great! How about you?",
+        "what is your name": "I'm NinjaBot, your friendly assistant!",
+        "bye": "Goodbye! Have a great day!",
+        "default": "I'm not sure how to respond to that. Try asking something else!"
+    };
+
+    // Convert user text to lowercase for better matching
+    let lowerText = userText.toLowerCase();
+
+    return responses[lowerText] || responses["default"];
 }
 
 // Typing Animation
